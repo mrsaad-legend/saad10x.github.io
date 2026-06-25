@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 67% 6%;
+    --foreground: 180 20% 96%;
+
+    --card: 226 50% 9%;
+    --card-foreground: 180 20% 96%;
+
+    --primary: 167 100% 48%;
+    --primary-foreground: 230 67% 6%;
+
+    --secondary: 193 100% 42%;
+    --secondary-foreground: 230 67% 6%;
+
+    --muted: 226 30% 16%;
+    --muted-foreground: 215 18% 65%;
+
+    --accent: 273 64% 46%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 347 100% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 226 30% 18%;
+    --input: 226 30% 18%;
+    --ring: 167 100% 48%;
+
+    --radius: 0.85rem;
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono",
+      Menlo, monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cyber-bg text-foreground antialiased;
+    background-image: theme("backgroundImage.cyber-radial");
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(0, 245, 212, 0.25);
+    color: #ffffff;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050816;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00f5d4, #00b4d8);
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+
+  .glass-strong {
+    @apply border border-white/10 bg-cyber-surface/70 backdrop-blur-2xl;
+  }
+
+  .neon-text {
+    text-shadow: 0 0 12px rgba(0, 245, 212, 0.55);
+  }
+
+  .cyber-grid {
+    background-image: theme("backgroundImage.grid-pattern");
+    background-size: 48px 48px;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyber-primary via-cyber-secondary to-cyber-accent bg-clip-text text-transparent;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-white/5;
+  }
+  .skeleton::after {
+    @apply absolute inset-0;
+    content: "";
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.6s infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .focus-ring {
+    @apply outline-none ring-offset-2 ring-offset-cyber-bg focus-visible:ring-2 focus-visible:ring-cyber-primary;
+  }
+}
